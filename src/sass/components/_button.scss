@@ -1,0 +1,143 @@
+.btn{
+    /* This is a pseudo-class, some class that we style under a specific condition */
+    &:link,&:visited,&{
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all 0.2s;
+        position: relative;
+        font-size: $default-font-sizes;
+        //Change for the <button>
+        border: none;
+        cursor: pointer;
+       
+    }
+    &:hover{
+        -moz-transform: translateY(-3px);
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+        &::after{
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;  
+        }
+    }
+    &:active{
+        outline: none;
+        -moz-transform: translateY(1px);
+        transform: translateY(1px);
+        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+    }
+   
+    /* Add an pseudo-element right after the element */
+    &::after{
+        /* For the after element, you always have to provide the content property, otherwise, it won't appear on the page */
+        content: "";
+        display: inline-block;
+        /* The width and height are relative to the btn size */
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 0.4s;
+    }
+    &--white{
+        background: $color-white;
+        color: $color-gray-dark;
+        &::after{
+            background: $color-white;
+        }
+    }
+    &--green{
+        background: $color-primary;
+        color: $color-white;
+        &::after{
+            background: $color-primary;
+        }
+    }
+    &--animated:link,&--animated:visited{
+        animation-name: moveInBottom;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-out;
+        animation-delay: 0.75s;
+        /* Set the 0% properties before the animation begins */
+        animation-fill-mode: backwards;
+    }
+}
+button.btn:focus{
+    outline: none;
+    -moz-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+}
+.btn-menu{
+    &__icon{
+        position: relative;
+        margin-top: 3.5rem;
+        &,&::before,&::after{
+            width: 3rem;
+            height: 2px;
+            background-color: $color-gray-dark-2;
+            display: inline-block;
+        }
+        &::before,&::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all .2s;
+        }
+        &::before{ top: -.8rem}
+        &::after{ top: .8rem}
+       
+    }
+    &__button:hover &__icon::before{top: -1rem}
+    &__button:hover &__icon::after{top: 1rem}
+
+    &__checkbox:checked + &__button &__icon{
+        background-color: transparent;
+        
+    }
+    &__checkbox:checked + &__button &__icon::before{ 
+        transform: rotate(135deg);
+        top: 0;
+    }
+    &__checkbox:checked + &__button &__icon::after{ 
+        transform: rotate(-135deg);
+        top: 0;
+    }
+}
+.btn-text{
+    &:link,&:visited{
+        font-size: $default-font-sizes;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: .1rem solid $color-primary;
+        padding: .3rem;
+        transition: all .2s;
+    }
+    &:hover{
+        transition: all .2s;
+        background-color: $color-primary;
+        color: $color-white;
+        -moz-transform: translateY(-3px);
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+        &::after{
+            -moz-transform: scaleX(1.4) scaleY(1.6);
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;  
+        }
+    }
+    &:active{
+        -moz-transform: translateY(1px);
+        transform: translateY(1px);
+        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+    }
+   
+ 
+}
